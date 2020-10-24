@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import RouteWithCondition from './components/RouteWithCondition';
+import Home from './pages/Home';
+import CheckOTP from './pages/CheckOTP';
+import Cards from './pages/Cards';
+import User from './entities/User';
 
-function App() {
+const users = [new User('kode@kode.ru', 'Enk0deng')];
+
+const App = () => {
+  const [user, setUser] = useState({
+    login: null,
+    password: null,
+    passCheck: false,
+    otp: '123456',
+    otpCheck: false,
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/cards" component={Cards} />
+        <Route
+          exact
+          path="/otp"
+          render={(props) => <CheckOTP {...props} otp={user.otp} setUser={setUser} />}
+        />
+        <Route
+          exact
+          path="/"
+          render={(props) => <Home {...props} users={users} setUser={setUser} />}
+        />
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
+      </Switch>
+    </Router>
   );
-}
+};
 
 export default App;
