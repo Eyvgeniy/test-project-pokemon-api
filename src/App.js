@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import RouteWithCondition from './components/RouteWithCondition';
 import Home from './pages/Home';
 import CheckOTP from './pages/CheckOTP';
@@ -14,26 +14,21 @@ const App = () => {
     password: null,
     passCheck: false,
     otp: '123456',
-    otpCheck: false,
+    otpCheck: true,
   });
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/cards" component={Cards} />
-        <Route
-          exact
-          path="/otp"
-          render={(props) => <CheckOTP {...props} otp={user.otp} setUser={setUser} />}
-        />
-        <Route
-          exact
-          path="/"
-          render={(props) => <Home {...props} users={users} setUser={setUser} />}
-        />
-        <Route path="*">
-          <Redirect to="/" />
-        </Route>
+        <RouteWithCondition path="/cards" condition={user.otpCheck} to={'/'}>
+          <Cards />
+        </RouteWithCondition>
+        <RouteWithCondition path="/otp" condition={user.passCheck} to={'/'}>
+          <CheckOTP otp={user.otp} setUser={setUser} />
+        </RouteWithCondition>
+        <RouteWithCondition path="/" condition={!user.otpCheck} to={'/cards'}>
+          <Home users={users} setUser={setUser} />
+        </RouteWithCondition>
       </Switch>
     </Router>
   );

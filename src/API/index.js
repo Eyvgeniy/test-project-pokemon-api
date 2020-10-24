@@ -11,10 +11,14 @@ const getPokemonsData = async (path, query = {}) => {
   if (isObjWithKeys(query)) {
     setSearchParams(url, query);
   }
-  const response = await fetch(url);
-  const data = await response.json();
-  const totalCount = await response.headers.get('total-count');
-  return { data, totalCount };
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const totalCount = await response.headers.get('total-count');
+    return { data, totalCount };
+  } catch (err) {
+    throw new Error(err);
+  }
 };
 
 export default getPokemonsData;

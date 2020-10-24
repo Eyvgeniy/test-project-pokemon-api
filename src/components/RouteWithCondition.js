@@ -1,4 +1,5 @@
 import { Route, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const RouteWithCondition = ({ condition, to, children, ...rest }) => {
   return (
@@ -12,3 +13,8 @@ const RouteWithCondition = ({ condition, to, children, ...rest }) => {
 };
 
 export default RouteWithCondition;
+
+RouteWithCondition.propTypes = {
+  condition: PropTypes.bool.isRequired,
+  to: PropTypes.string.isRequired,
+};
