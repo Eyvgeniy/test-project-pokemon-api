@@ -1,11 +1,8 @@
 import React from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-const Card = ({ cards }) => {
-  // const card = useLocation().state;
-  console.log('Card!!!!');
-  const { cardId } = useParams();
-  const card = cards.find((c) => c.id === cardId);
+const Card = () => {
+  const card = useLocation().state;
   return (
     <>
       <div className="row my-2 d-flex flex-grow-1">
