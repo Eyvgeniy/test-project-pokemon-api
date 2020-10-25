@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import CheckOTP from './pages/CheckOTP';
 import Cards from './pages/Cards';
 import User from './entities/User';
+import { validateUser, validateOtp } from './utils/validate';
 
 const users = [new User('kode@kode.ru', 'Enk0deng')];
 const defaultUser = {
@@ -12,7 +13,7 @@ const defaultUser = {
   password: null,
   passCheck: false,
   otp: '123456',
-  otpCheck: true,
+  otpCheck: false,
 };
 
 const App = () => {
@@ -27,10 +28,10 @@ const App = () => {
           <Cards logout={logout} />
         </RouteWithCondition>
         <RouteWithCondition path="/otp" condition={user.passCheck} to={'/'}>
-          <CheckOTP otp={user.otp} setUser={setUser} />
+          <CheckOTP otp={user.otp} isValid={validateOtp(user.otp, setUser)} />
         </RouteWithCondition>
         <RouteWithCondition path="/" condition={!user.otpCheck} to={'/cards'}>
-          <Home users={users} setUser={setUser} />
+          <Home users={users} isValid={validateUser(users, setUser)} />
         </RouteWithCondition>
       </Switch>
     </Router>

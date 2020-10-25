@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import LoginForm from '../components/LoginForm';
 
-const Home = ({ users, setUser }) => {
+const Home = ({ users, isValid }) => {
   return (
     <div className="container h-100 d-flex justify-content-center align-items-center">
-      <LoginForm users={users} setUser={setUser} />
+      <LoginForm users={users} isValid={isValid} />
     </div>
   );
 };

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const OtpForm = ({ otp, setUser }) => {
+const OtpForm = ({ isValid }) => {
   const [value, setValue] = useState('');
   const [isValidOTP, setIsValidOTP] = useState(null);
   const history = useHistory();
@@ -13,8 +13,7 @@ const OtpForm = ({ otp, setUser }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (value === otp) {
-      setUser((user) => ({ ...user, otpCheck: true }));
+    if (isValid(value)) {
       history.push('/cards');
     }
     setIsValidOTP('Code is not valid');

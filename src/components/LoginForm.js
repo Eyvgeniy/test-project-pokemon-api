@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Login = ({ users, setUser }) => {
+const Login = ({ users, isValid }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [invalidUser, setInvalidUser] = useState(false);
@@ -11,13 +11,9 @@ const Login = ({ users, setUser }) => {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    const user = users.find((u) => u.login === login);
-    if (user) {
-      if (user.password === password) {
-        setInvalidUser(false);
-        setUser((user) => ({ ...user, login, password, passCheck: true }));
-        history.push('/otp', { isAuth: true });
-      }
+    if (isValid(login, password)) {
+      setInvalidUser(false);
+      history.push('/otp');
     }
     setInvalidUser(true);
   };
