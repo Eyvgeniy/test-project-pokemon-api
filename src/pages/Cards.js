@@ -19,6 +19,11 @@ const selectors = [
 const defaultSelectorsState = selectors.reduce((acc, { path }) => ({ ...acc, [path]: [] }), {});
 const defaultCards = { cards: [], total: 0 };
 const setCurrentPage = (setQuery) => (page) => setQuery((state) => ({ ...state, page }));
+const setSelectorValue = (setQuery) => (target) =>
+  setQuery((state) => ({
+    ...state,
+    [target.name]: target.value,
+  }));
 
 const Cards = ({ logout }) => {
   const [query, setQuery] = useState(defaultQuery);
@@ -77,7 +82,7 @@ const Cards = ({ logout }) => {
                   <Selector
                     key={i}
                     name={name}
-                    setQuery={setQuery}
+                    setValue={setSelectorValue(setQuery)}
                     list={types[path]}
                     isLoading={isLoadingSelectors}
                   />

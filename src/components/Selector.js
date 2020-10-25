@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Selector = ({ name, list, setQuery, isLoading }) => {
-  const [value, setValue] = useState(name);
+const Selector = ({ name, list, setValue, isLoading }) => {
+  const [value, setCurrentValue] = useState(name);
 
   const handleChange = (e) => {
     e.preventDefault();
-    setValue(e.target.value);
-    setQuery((state) => ({ ...state, [e.target.name]: e.target.value }));
+    setCurrentValue(e.target.value);
+    setValue(e.target);
   };
 
   return (
@@ -33,6 +33,6 @@ export default Selector;
 Selector.propTypes = {
   name: PropTypes.string.isRequired,
   list: PropTypes.array.isRequired,
-  setQuery: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
