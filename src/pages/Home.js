@@ -4,7 +4,9 @@ import LoginForm from '../components/LoginForm';
 const Home = ({ users, isValid }) => {
   return (
     <div className="container h-100 d-flex justify-content-center align-items-center">
-      <LoginForm users={users} isValid={isValid} />
+      <div className="d-flex">
+        <LoginForm users={users} isValid={isValid} />
+      </div>
     </div>
   );
 };

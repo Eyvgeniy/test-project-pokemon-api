@@ -24,7 +24,7 @@ const Login = ({ isValid }) => {
   return (
     <form onSubmit={handleSumbit}>
       <div className="mb-3">
-        <label htmlFor="inputLogin" className="form-label">
+        <label htmlFor="inputLogin" className="form-label d-block mx-auto">
           Login
           <input
             name="login"
@@ -56,7 +56,7 @@ const Login = ({ isValid }) => {
       <button type="submit" className="btn btn-secondary d-block mx-auto">
         Sign In
       </button>
-      {invalidUser && <p className="text-danger my-2 pl-3">Login or password is not valid</p>}
+      {invalidUser && <p className="text-danger my-2">Login or password is not valid</p>}
     </form>
   );
 };
