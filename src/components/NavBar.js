@@ -1,19 +1,35 @@
-const NavBar = () => {
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+
+const NavBar = ({ isLinkBack, logout }) => {
+  const history = useHistory();
+
   return (
     <div style={{ backgroundColor: '#EBEBEB' }}>
       <ul className="nav d-flex justify-content-between border">
         <li className="nav-item">
-          <a className="nav-link text-dark" href="#">
-            &lt; Back
-          </a>
+          {isLinkBack && (
+            <button
+              className="btn btn-link text-dark"
+              onClick={() => history.goBack()}
+              style={{ borderStyle: 'none' }}
+            >
+              &lt; Back
+            </button>
+          )}
         </li>
         <li className="nav-item">
-          <a className="nav-link text-dark" href="#">
+          <button className="btn btn-link text-dark" onClick={() => logout()}>
             Logout
-          </a>
+          </button>
         </li>
       </ul>
     </div>
   );
 };
 export default NavBar;
+
+NavBar.propTypes = {
+  isLinkBack: PropTypes.bool,
+  logout: PropTypes.func.isRequired,
+};

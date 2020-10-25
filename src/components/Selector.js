@@ -13,12 +13,12 @@ const Selector = ({ name, list, setQuery, isLoading }) => {
   return (
     <select
       name={name}
-      className="form-select mx-4 mt-5 w-50"
+      className="form-select  my-3 w-75"
       disabled={isLoading}
       value={value}
       onChange={handleChange}
     >
-      <option value=''>{name}</option>
+      <option value="">{name}</option>
       {list.map((type, i) => (
         <option key={i} value={type}>
           {type}

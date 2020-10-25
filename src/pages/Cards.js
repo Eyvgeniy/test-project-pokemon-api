@@ -1,64 +1,115 @@
 import { useState, useEffect } from 'react';
 import getPokemonsData from '../API';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import NavBar from '../components/NavBar';
 import Selector from '../components/Selector';
-import svg from '../logo.svg'
-import '../App.css'
+import Loader from '../components/Loader';
+import CardsBox from '../components/CardsBox';
+import PaginateBox from '../components/PaginateBox';
+import Card from '../components/Card';
+import '../App.css';
 
-const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 4 };
+const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 6 };
 const cardsPath = 'cards';
-const selectors = [{path: 'types', name: 'types'}, { path: 'subtypes', name: 'subtype'}]
-const defaultSelectorsState = selectors.reduce((acc, {path}) => ({ ...acc, [path]: [] }), {});
+const selectors = [
+  { path: 'types', name: 'types' },
+  { path: 'subtypes', name: 'subtype' },
+];
+const defaultSelectorsState = selectors.reduce((acc, { path }) => ({ ...acc, [path]: [] }), {});
+const defaultCards = { cards: [], total: 0 };
 
-const Cards = () => {
+const Cards = ({ logout }) => {
   const [query, setQuery] = useState(defaultQuery);
   const [types, setTypes] = useState(defaultSelectorsState);
+  const [cards, setCards] = useState(defaultCards);
   const [isLoadingSelectors, setIsLoadingSelectors] = useState(false);
+  const [isLoadingCards, setIsLoadingCards] = useState(false);
+  const { path } = useRouteMatch();
 
   useEffect(() => {
     setIsLoadingSelectors(true);
     const fetchSelectorsData = (list) => {
       list.forEach(async ({ path }) => {
-        const { data } = await getPokemonsData(path);
-        setTypes((state) => ({ ...state, [path]: data[path] }));
-        setIsLoadingSelectors(false);
-      });  
+        try {
+          const { data } = await getPokemonsData(path);
+          setTypes((state) => ({ ...state, [path]: data[path] }));
+          setIsLoadingSelectors(false);
+        } catch (err) {
+          alert(err);
+        }
+      });
     };
     fetchSelectorsData(selectors);
   }, []);
 
   useEffect(() => {
+    if (query.types === '' && query.subtype === '') {
+      setCards(defaultCards);
+      return;
+    }
+    setIsLoadingCards(true);
     const fetchCardsData = async (path) => {
-      const data = await getPokemonsData(path, query);
+      try {
+        const { data, total } = await getPokemonsData(path, query);
+        setCards({ cards: data.cards, total: Number(total) });
+        setIsLoadingCards(false);
+      } catch (err) {
+        alert(err);
+      }
     };
     fetchCardsData(cardsPath);
-  }, [query])
+  }, [query]);
 
   return (
     <div className="container-fluid h-100 d-flex flex-column ">
-      <NavBar />
-      <div className="row mt-2 flex-grow-1">
-        <div className="col-5 d-flex">
-          <div className="border" style={{ backgroundColor: '#FAFAFA' }}>
-            {selectors.map(({path, name}, i) => (
-              <Selector
-                key={i}
-                name={name}
-                setQuery={setQuery}
-                list={types[path]}
-                isLoading={isLoadingSelectors}
-              />
-            ))}
-          </div>
-        </div>
-        <div className="col-7 d-flex">
-            <div className='bg-light border h-100 w-100'>{
-              isLoadingSelectors && <img className='app-logo-spin' src={svg} alt='loading'/>
-            }</div>
-        </div>
+      <NavBar isLinkBack={true} logout={logout} />
+      <div className="row my-2 d-flex flex-grow-1">
+        <Switch>
+          <Route exact path={path}>
+            <div className="col-sm-3 d-flex">
+              <div
+                className="border w-100 d-flex flex-column align-items-center"
+                style={{ backgroundColor: '#FAFAFA' }}
+              >
+                {selectors.map(({ path, name }, i) => (
+                  <Selector
+                    key={i}
+                    name={name}
+                    setQuery={setQuery}
+                    list={types[path]}
+                    isLoading={isLoadingSelectors}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="col-sm-9 flex-grow-1">
+              <div className="bg-light border h-100 w-100 d-flex flex-column justify-content-between">
+                {isLoadingCards || isLoadingSelectors ? (
+                  <Loader />
+                ) : (
+                  <CardsBox cards={cards.cards} />
+                )}
+                <PaginateBox
+                  page={query.page}
+                  pageSize={query.pageSize}
+                  total={cards.total}
+                  setQuery={setQuery}
+                />
+              </div>
+            </div>
+          </Route>
+          <Route path={`${path}/:cardId`}>
+            <Card cards={cards.cards} />
+          </Route>
+        </Switch>
       </div>
     </div>
   );
 };
 
 export default Cards;
+
+Cards.propTypes = {
+  logout: PropTypes.func.isRequired,
+};

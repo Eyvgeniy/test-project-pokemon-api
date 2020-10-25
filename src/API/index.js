@@ -14,8 +14,8 @@ const getPokemonsData = async (path, query = {}) => {
   try {
     const response = await fetch(url);
     const data = await response.json();
-    const totalCount = await response.headers.get('total-count');
-    return { data, totalCount };
+    const total = await response.headers.get('total-count');
+    return { data, total };
   } catch (err) {
     throw new Error(err);
   }
