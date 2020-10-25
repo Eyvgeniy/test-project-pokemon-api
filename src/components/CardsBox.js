@@ -12,7 +12,7 @@ const CardsBox = ({ cards }) => {
           <div className="card w-25 my-2 mx-4" key={i}>
             <img src={card.imageUrl} className="card-img-top" alt="..." />
             <div className="card-body p-1 h-25">
-              <Link to={{ pathname: `${url}${card.id}`, state: card }}>{card.name}</Link>
+              <Link to={{ pathname: `${url}/${card.id}`, state: card }}>{card.name}</Link>
               <p className="card-text">{card.artist}</p>
             </div>
           </div>
