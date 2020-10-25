@@ -9,6 +9,15 @@
 /coverage
 
 # production
+build
+
+#GH Pages
+public
+src
+.eslintignore
+Makefile
+package.json
+package-lock.json
 
 
 # misc
