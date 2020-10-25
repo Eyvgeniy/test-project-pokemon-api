@@ -45,4 +45,4 @@ const OtpForm = ({ isValid }) => {
 
 export default OtpForm;
 
-OtpForm.propTypes = { otp: PropTypes.string.isRequired, setUser: PropTypes.func.isRequired };
+OtpForm.propTypes = { isValid: PropTypes.func.isRequired };

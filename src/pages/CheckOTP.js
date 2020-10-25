@@ -15,6 +15,5 @@ const CheckOTP = ({ isValid }) => {
 export default CheckOTP;
 
 CheckOTP.propTypes = {
-  otp: PropTypes.string,
-  setUser: PropTypes.func,
+  isValid: PropTypes.func,
 };

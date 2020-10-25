@@ -13,5 +13,5 @@ export default Home;
 
 Home.propTypes = {
   users: PropTypes.array.isRequired,
-  setUser: PropTypes.func.isRequired,
+  isValid: PropTypes.func.isRequired,
 };

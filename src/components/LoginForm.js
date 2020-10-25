@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Login = ({ users, isValid }) => {
+const Login = ({ isValid }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [invalidUser, setInvalidUser] = useState(false);
@@ -63,4 +63,4 @@ const Login = ({ users, isValid }) => {
 
 export default Login;
 
-Login.propsType = { users: PropTypes.array.isRequired, setUser: PropTypes.func.isRequired };
+Login.propsType = { isValid: PropTypes.func.isRequired };
