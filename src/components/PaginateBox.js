@@ -1,14 +1,13 @@
 import paginate from '../utils/paginate';
 import PropTypes from 'prop-types';
 
-const PaginateBox = ({ page, pageSize, total, setQuery }) => {
+const PaginateBox = ({ page, pageSize, total, setPage }) => {
   if (total === 0) {
     return null;
   }
   const pagesList = paginate(page, pageSize, total);
-  const handleClick = (currentPage) => (e) => {
-    e.preventDefault();
-    setQuery((state) => ({ ...state, page: currentPage }));
+  const handleClick = (currentPage) => () => {
+    setPage(currentPage);
   };
   return (
     <div className="d-flex justify-content-center py-1" style={{ backgroundColor: '#EBEBEB' }}>

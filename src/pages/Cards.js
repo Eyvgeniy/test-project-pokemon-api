@@ -18,6 +18,7 @@ const selectors = [
 ];
 const defaultSelectorsState = selectors.reduce((acc, { path }) => ({ ...acc, [path]: [] }), {});
 const defaultCards = { cards: [], total: 0 };
+const setCurrentPage = (setQuery) => (page) => setQuery((state) => ({ ...state, page }));
 
 const Cards = ({ logout }) => {
   const [query, setQuery] = useState(defaultQuery);
@@ -94,7 +95,7 @@ const Cards = ({ logout }) => {
                   page={query.page}
                   pageSize={query.pageSize}
                   total={cards.total}
-                  setQuery={setQuery}
+                  setPage={setCurrentPage(setQuery)}
                 />
               </div>
             </div>
