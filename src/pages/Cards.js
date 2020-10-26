@@ -10,7 +10,7 @@ import PaginateBox from '../components/PaginateBox';
 import Card from '../components/Card';
 import '../App.css';
 
-const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 6 };
+const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 4 };
 const cardsPath = 'cards';
 const selectors = [
   { path: 'types', name: 'types' },
@@ -68,7 +68,7 @@ const Cards = ({ logout }) => {
   }, [query]);
 
   return (
-    <div className="container-fluid h-100 d-flex flex-column ">
+    <div className="container h-100 d-flex flex-column ">
       <NavBar isLinkBack={true} logout={logout} />
       <div className="row my-2 d-flex flex-grow-1">
         <Switch>
