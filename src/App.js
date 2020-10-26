@@ -13,7 +13,7 @@ const defaultUser = {
   password: null,
   passCheck: false,
   otp: '123456',
-  otpCheck: false,
+  otpCheck: true,
 };
 
 const App = ({ savedUser, users }) => {
