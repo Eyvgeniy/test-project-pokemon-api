@@ -4,10 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { getUserFromLocalStorage } from './utils/validate';
+import User from './entities/User';
+
+const users = [new User('kode@kode.ru', 'Enk0deng')];
+const savedUser = getUserFromLocalStorage();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App savedUser={savedUser} users={users} />
   </React.StrictMode>,
   document.getElementById('root'),
 );
