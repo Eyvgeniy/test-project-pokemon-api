@@ -3,10 +3,9 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 const CardsBox = ({ cards }) => {
   const { url } = useRouteMatch();
-  console.log(url);
 
   return (
-    <div className="d-flex flex-wrap justify-content-center aligh-items-center">
+    <div className="d-flex flex-wrap justify-content-center aligh-items-center overflow-auto">
       {cards.map((card, i) => {
         return (
           <div className="card w-25 my-2 mx-4" key={i}>
