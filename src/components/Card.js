@@ -25,8 +25,8 @@ const Card = () => {
             {card.resistances && <p>{`resistances: ${JSON.stringify(card.resistances[0])}`}</p>}
             {card.evolvesFrom && <p>{`evolvesFrom: ${card.evolvesFrom}`}</p>}
             {card.attacks &&
-              card.attacks.map((a) => (
-                <div key={card.id}>
+              card.attacks.map((a, i) => (
+                <div key={i}>
                   <p className="mb-1">{`Name: ${a.name}`}</p>
                   {a.text && <small>{`Description: ${a.text}`}</small>}
                 </div>
