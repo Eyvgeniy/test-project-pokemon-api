@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import LoginForm from '../components/LoginForm';
 
-const Home = ({ users, isValid }) => {
+const Home = ({ isValid }) => {
   return (
     <div className="container h-100 d-flex justify-content-center align-items-center">
       <div className="d-flex">
-        <LoginForm users={users} isValid={isValid} />
+        <LoginForm isValid={isValid} />
       </div>
     </div>
   );
@@ -14,6 +14,5 @@ const Home = ({ users, isValid }) => {
 export default Home;
 
 Home.propTypes = {
-  users: PropTypes.array.isRequired,
   isValid: PropTypes.func.isRequired,
 };

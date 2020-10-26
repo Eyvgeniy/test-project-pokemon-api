@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import './otp.css';
 import OTPForm from '../components/OtpForm.js';
 
 const CheckOTP = ({ isValid }) => {
