@@ -8,7 +8,7 @@ const Card = () => {
       <div className="row my-2 d-flex flex-grow-1">
         <div className="col-md-6 ">
           <div className="d-flex flex-column align-items-center h-100">
-            <img src={card.imageUrlHiRes} alt={card.name} className="w-50 px-auto" />
+            <img src={card.imageUrlHiRes} alt={card.name} className="w-75 px-auto" />
           </div>
         </div>
         <div className="col-md-6">
