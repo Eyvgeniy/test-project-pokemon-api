@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import getPokemonsData from '../API';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../components/NavBar';
 import Selector from '../components/Selector';
@@ -32,6 +32,7 @@ const Cards = ({ logout }) => {
   const [isLoadingSelectors, setIsLoadingSelectors] = useState(false);
   const [isLoadingCards, setIsLoadingCards] = useState(false);
   const { path } = useRouteMatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     setIsLoadingSelectors(true);
@@ -69,7 +70,7 @@ const Cards = ({ logout }) => {
 
   return (
     <div className="container h-100 d-flex flex-column ">
-      <NavBar isLinkBack={true} logout={logout} />
+      <NavBar isLinkBack={pathname !== '/cards'} logout={logout} />
       <div className="row my-2 d-flex flex-grow-1">
         <Switch>
           <Route exact path={path}>
