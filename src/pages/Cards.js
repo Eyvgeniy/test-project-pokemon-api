@@ -10,7 +10,7 @@ import PaginateBox from '../components/PaginateBox';
 import Card from '../components/Card';
 import '../App.css';
 
-const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 4 };
+const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 6 };
 const cardsPath = 'cards';
 const selectors = [
   { path: 'types', name: 'types' },
@@ -90,7 +90,7 @@ const Cards = ({ logout }) => {
               </div>
             </div>
             <div className="col-sm-9 flex-grow-1">
-              <div className="bg-light border h-100 w-100 d-flex flex-column justify-content-between">
+              <div className="bg-light border h-100 d-flex flex-column justify-content-between">
                 {isLoadingCards || isLoadingSelectors ? (
                   <Loader />
                 ) : (
