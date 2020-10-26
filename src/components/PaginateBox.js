@@ -1,5 +1,6 @@
-import paginate from '../utils/paginate';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
+import paginate from '../utils/paginate';
 
 const PaginateBox = ({ page, pageSize, total, setPage }) => {
   if (total === 0) {
@@ -13,15 +14,19 @@ const PaginateBox = ({ page, pageSize, total, setPage }) => {
     <div className="d-flex justify-content-center py-1" style={{ backgroundColor: '#EBEBEB' }}>
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center my-0">
-          {pagesList.map((page, i) => {
+          {pagesList.map((p, i) => {
+            const btnClass = cn({
+              'btn text-dark mx-1': true,
+              'btn-active': page === p,
+            });
             return (
               <li key={i} className="page-item">
                 <button
-                  className="btn text-dark mx-1"
+                  className={btnClass}
                   style={{ backgroundColor: '#EBEBEB', borderStyle: 'none' }}
-                  onClick={handleClick(page)}
+                  onClick={handleClick(p)}
                 >
-                  {page}
+                  {p}
                 </button>
               </li>
             );
