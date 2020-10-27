@@ -21,8 +21,7 @@
 
 ### Первое задание:
 
-Функция находиться в [файле](https://github.com/Eyvgeniy/test-project-pokemon-api/blob/main/src/utils/index.js)
-Спроектирована по методолигии TDD, время на реализацию 20 минут.
+Функция находиться в [файле](https://github.com/Eyvgeniy/test-project-pokemon-api/blob/main/src/utils/getObjectProperty.js). Спроектирована по методолигии TDD, время на реализацию 20 минут.
 
 ### Второе задание:
 
