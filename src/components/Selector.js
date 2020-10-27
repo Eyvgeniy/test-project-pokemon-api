@@ -21,11 +21,12 @@ const Selector = ({ name, list, setValue, isLoading, query, setBeginPage }) => {
       onChange={handleChange}
     >
       <option value="">{name}</option>
-      {list.map((type, i) => (
-        <option key={i} value={type}>
-          {type}
-        </option>
-      ))}
+      {list &&
+        list.map((type, i) => (
+          <option key={i} value={type}>
+            {type}
+          </option>
+        ))}
     </select>
   );
 };
