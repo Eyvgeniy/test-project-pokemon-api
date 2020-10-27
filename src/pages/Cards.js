@@ -92,6 +92,7 @@ const Cards = ({ logout }) => {
                     setValue={setSelectorValue(setQuery)}
                     list={types[path]}
                     isLoading={isLoadingSelectors}
+                    query={query}
                   />
                 ))}
               </div>

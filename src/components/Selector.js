@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Selector = ({ name, list, setValue, isLoading }) => {
-  const [value, setCurrentValue] = useState(name);
+const Selector = ({ name, list, setValue, isLoading, query }) => {
+  const defaultValue = query[name] || name;
+  const [value, setCurrentValue] = useState(defaultValue);
 
   const handleChange = (e) => {
     e.preventDefault();
