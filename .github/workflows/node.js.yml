@@ -32,6 +32,6 @@ jobs:
       - name: Set git config and add changes
         run: |
           git config --global user.email "${{secrets.REPO_EMAIL}}"
-          git config --global user.name "${secrets.GITHUB_ACTOR}"
+          git config --global user.name "${GITHUB_ACTOR}"
       - name: Deploy project on Github Pages
         run: npm run deploy
