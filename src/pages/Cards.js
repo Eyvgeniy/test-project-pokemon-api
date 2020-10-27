@@ -37,6 +37,8 @@ const Cards = ({ logout }) => {
   const { path } = useRouteMatch();
   const { pathname } = useLocation();
 
+  const setBeginPage = () => setQuery((state) => ({ ...state, page: 1 }));
+
   useEffect(() => {
     setIsLoadingSelectors(true);
     const fetchSelectorsData = (list) => {
@@ -93,6 +95,7 @@ const Cards = ({ logout }) => {
                     list={types[path]}
                     isLoading={isLoadingSelectors}
                     query={query}
+                    setBeginPage={setBeginPage}
                   />
                 ))}
               </div>
