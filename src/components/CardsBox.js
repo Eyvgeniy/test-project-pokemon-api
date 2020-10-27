@@ -30,4 +30,5 @@ export default CardsBox;
 
 CardsBox.propTypes = {
   cards: PropTypes.array.isRequired,
+  showModal: PropTypes.func.isRequired,
 };
