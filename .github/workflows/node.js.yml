@@ -23,6 +23,15 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: make lint
-      - run: npm run test
+      - name: Install dependencies
+        run: npm install
+      - name: Test project with ESlint
+        run: make lint
+      - name: Test project with Jest
+        run: npm run test
+      - name: Set git config and add changes
+        run: |
+          git config --global user.email "${{secrets.REPO_EMAIL}}"
+          git config --global user.name "${secrets.GITHUB_ACTOR}"
+      - name: Deploy project on Github Pages
+        run: npm run deploy
