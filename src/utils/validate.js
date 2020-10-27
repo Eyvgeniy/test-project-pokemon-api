@@ -7,9 +7,9 @@ export const getUserFromLocalStorage = () => {
 };
 
 export const validateUser = (users, setUser) => (login, password) => {
-  const user = users.find((u) => u.login === login);
+  const user = users.find((u) => u.login === login.trim());
   if (user) {
-    if (user.password === password) {
+    if (user.password === password.trim()) {
       setUser((user) => ({ ...user, login, password, passCheck: true }));
       const user = { login, password, passCheck: true };
       saveUSerToLocalStorage(user);
