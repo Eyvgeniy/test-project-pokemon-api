@@ -8,6 +8,9 @@ const PaginateBox = ({ page, pageSize, total, setPage }) => {
   }
   const pagesList = paginate(page, pageSize, total);
   const handleClick = (currentPage) => () => {
+    if (currentPage === '...') {
+      return;
+    }
     setPage(currentPage);
   };
   return (
@@ -27,7 +30,7 @@ const PaginateBox = ({ page, pageSize, total, setPage }) => {
                     style={{ backgroundColor: '#EBEBEB', borderStyle: 'none' }}
                     onClick={handleClick(p)}
                   >
-                    {p}
+                    {page === p ? <strong>{p}</strong> : p}
                   </button>
                 </li>
               );
