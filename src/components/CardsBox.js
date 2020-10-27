@@ -6,22 +6,23 @@ const CardsBox = ({ cards, showModal }) => {
 
   return (
     <div className="d-flex flex-wrap justify-content-center aligh-items-center overflow-auto">
-      {cards.map((card, i) => {
-        return (
-          <div className="card w-25 my-3 mx-4 shadow" key={i}>
-            <img
-              src={card.imageUrl}
-              className="card-img-top"
-              alt="..."
-              onClick={showModal(card.name, card.imageUrlHiRes)}
-            />
-            <div className="card-body p-1 h-25">
-              <Link to={{ pathname: `${url}/${card.id}`, state: card }}>{card.name}</Link>
-              <p className="card-text">{card.artist}</p>
+      {cards &&
+        cards.map((card, i) => {
+          return (
+            <div className="card w-25 my-3 mx-4 shadow" key={i}>
+              <img
+                src={card.imageUrl}
+                className="card-img-top"
+                alt="..."
+                onClick={showModal(card.name, card.imageUrlHiRes)}
+              />
+              <div className="card-body p-1 h-25">
+                <Link to={{ pathname: `${url}/${card.id}`, state: card }}>{card.name}</Link>
+                <p className="card-text">{card.artist}</p>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 };
