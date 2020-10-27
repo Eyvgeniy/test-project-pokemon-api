@@ -14,23 +14,24 @@ const PaginateBox = ({ page, pageSize, total, setPage }) => {
     <div className="d-flex justify-content-center py-1" style={{ backgroundColor: '#EBEBEB' }}>
       <nav aria-label="Page navigation example">
         <ul className="pagination justify-content-center my-0">
-          {pagesList.map((p, i) => {
-            const btnClass = cn({
-              'btn text-dark mx-1': true,
-              'btn-active': page === p,
-            });
-            return (
-              <li key={i} className="page-item">
-                <button
-                  className={btnClass}
-                  style={{ backgroundColor: '#EBEBEB', borderStyle: 'none' }}
-                  onClick={handleClick(p)}
-                >
-                  {p}
-                </button>
-              </li>
-            );
-          })}
+          {pagesList &&
+            pagesList.map((p, i) => {
+              const btnClass = cn({
+                'btn text-dark mx-1': true,
+                'btn-active': page === p,
+              });
+              return (
+                <li key={i} className="page-item">
+                  <button
+                    className={btnClass}
+                    style={{ backgroundColor: '#EBEBEB', borderStyle: 'none' }}
+                    onClick={handleClick(p)}
+                  >
+                    {p}
+                  </button>
+                </li>
+              );
+            })}
         </ul>
       </nav>
     </div>
