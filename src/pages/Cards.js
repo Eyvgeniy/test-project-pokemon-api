@@ -8,6 +8,7 @@ import Loader from '../components/Loader';
 import CardsBox from '../components/CardsBox';
 import PaginateBox from '../components/PaginateBox';
 import Card from '../components/Card';
+import Modal from '../components/Modal';
 import '../App.css';
 
 const defaultQuery = { types: '', subtype: '', page: 1, pageSize: 6 };
@@ -18,6 +19,7 @@ const selectors = [
 ];
 const defaultSelectorsState = selectors.reduce((acc, { path }) => ({ ...acc, [path]: [] }), {});
 const defaultCards = { cards: [], total: 0 };
+const defaultPokemon = { pokemon: { name: '', img: '' }, show: null };
 const setCurrentPage = (setQuery) => (page) => setQuery((state) => ({ ...state, page }));
 const setSelectorValue = (setQuery) => (target) =>
   setQuery((state) => ({
@@ -29,6 +31,7 @@ const Cards = ({ logout }) => {
   const [query, setQuery] = useState(defaultQuery);
   const [types, setTypes] = useState(defaultSelectorsState);
   const [cards, setCards] = useState(defaultCards);
+  const [showModal, setShowModal] = useState(defaultPokemon);
   const [isLoadingSelectors, setIsLoadingSelectors] = useState(false);
   const [isLoadingCards, setIsLoadingCards] = useState(false);
   const { path } = useRouteMatch();
@@ -70,11 +73,14 @@ const Cards = ({ logout }) => {
 
   return (
     <div className="container h-100 d-flex flex-column ">
+      {showModal.show && (
+        <Modal pokemon={showModal.pokemon} closeModal={() => setShowModal(defaultPokemon)} />
+      )}
       <NavBar isLinkBack={pathname !== '/cards'} logout={logout} />
       <div className="row my-2 d-flex flex-grow-1">
         <Switch>
           <Route exact path={path}>
-            <div className="col-sm-3 d-flex">
+            <div className="col-md-3 d-flex">
               <div
                 className="border w-100 d-flex flex-column align-items-center"
                 style={{ backgroundColor: '#FAFAFA' }}
@@ -90,12 +96,16 @@ const Cards = ({ logout }) => {
                 ))}
               </div>
             </div>
-            <div className="col-sm-9 flex-grow-1">
-              <div className="bg-light border h-100 d-flex flex-column justify-content-between">
+            <div className="col-md-9 flex-grow-1">
+              <div className="border h-100 d-flex flex-column justify-content-between">
                 {isLoadingCards || isLoadingSelectors ? (
                   <Loader />
                 ) : (
-                  <CardsBox cards={cards.cards} />
+                  <CardsBox
+                    cards={cards.cards}
+                    showModal={(name, imgLink) => () =>
+                      setShowModal({ show: true, pokemon: { name, img: imgLink } })}
+                  />
                 )}
                 <PaginateBox
                   page={query.page}
