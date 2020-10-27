@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+<p align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <a href="https://kode.ru/">
+    <img src="images/kode-logo.png" alt="KODE's logo" width="180">
+  </a>
 
-## Available Scripts
+  <h2 align="center">Стажировка
+  Frontend</h2>
 
-In the project directory, you can run:
+  <p>
+    <p align="center">Ноябрь 2020</p>
+  </p>
+</p>
 
-### `npm start`
+# Тестовое задание на стажировку в компанию KODE
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Состоит из двух частей:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Функция поиска значения в объекте по заданному пути ключей.
+2. Приложение для просмотра распределенных по категориям карточек с Покемонами.
 
-### `npm test`
+### Первое задание:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Функция находиться в файле:  
+Спроектирована по методолигии TDD, время на реализацию 20 минут.
 
-### `npm run build`
+### Второе задание:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Используется публичное API – https://pokemontcg.io/.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Стэк
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Create React App](https://create-react-app.dev/)
+- [Function components + React Hooks](https://reactjs.org/docs/hooks-state.html#hooks-and-function-components)
+- [React-router](https://reactrouter.com/web/api/Route/render-func)
+- [Bootstarp](https://getbootstrap.com/)
 
-### `npm run eject`
+Проект размещен на [Github Pages](https://eyvgeniy.github.io/test-project-pokemon-api/#/)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Доступ в приложение по ключам:
+  - Логин — `kode@kode.ru`
+  - Пароль — `Enk0deng`
+  - SMS Код - `123456`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Из задач со звездочкой выполнено:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [x] Пагинация карточек.
+- [x] Любые анимации интерфейса
+- [x] Быстрый просмотр покемона в модальном окне по клику на карточку
+- [x] Сохранение сессии авторизованного пользователя после закрытия вкладки браузера. Например, через local storage браузера
+- [x] Адаптивный дизайн
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Выполнение проекта, 25-30 часов:
 
-## Learn More
+- Проектирование арихитектуры 2 часа. Изначально, когда думал над архитектурой, решил делать компоненты страницами и в них на jsx описывать структуру. В ходе реализации понял, что это неправильно и поменял архитектуру: страница компонент состоит из элементов компонентов.
+- Router Dom, 5-6 часов. До этого не использовал. Сложности были, пока вникал в процесс использования этой библиотеки и понимал отличия `pathname` и `path`.
+- Роутинг, 5-6 часов. Изначально решил не делать несколько маршрутов, а воспользоваться механизмом условной маршрутизации. Затем входе изучения пользовательского опыта, решил добавить отдельный маршрут для авторизованного пользователя после перезагрузки. Сложности были с использованием синтаксиса библитеки, часто из-за неправильного кода, приходилось долго разбираться почему нет переходов по страницам или не работает вложенный роутинг.
+- Управление состоянием, проектирование компонентов. 10-12 часов. Решил не использовать дополнительные библиотеки по управлению состоянием и писать все на нативных решениях React. В качестве хранилища пользователя использовал рут компонент, для его изменения используются абстракции. Сложности были с основным компонентом-страницей Cards, необходимо были продумать наполнение его состояния, состояние как оно пробрасывается по компонентам, которые его используют, какие абстрации нужны, какое состояние будет у вложенных компонентов.
+- Исправление багов и мелкие доработки, 3-4 часа.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Изображение итогового приложения:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<div><img src="images/cards-page.png" alt="Card`s page" width="700"></div>
+<div><img src="images/cards-page-modal.png" alt="Card`s page modal" width="700"></div>
+<div><img src="images/card-page.png" alt="Card page" width="700"></div>
