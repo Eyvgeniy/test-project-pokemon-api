@@ -27,7 +27,7 @@ const Card = () => {
             {card.attacks &&
               card.attacks.map((a, i) => (
                 <div key={i}>
-                  <p className="mb-1">{`Name: ${a.name}`}</p>
+                  <p className="mb-1">{`Attack Name: ${a.name}`}</p>
                   {a.text && <small>{`Description: ${a.text}`}</small>}
                 </div>
               ))}
