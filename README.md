@@ -14,6 +14,8 @@
 
 # Тестовое задание на стажировку в компанию KODE
 
+![Node.js CI](https://github.com/Eyvgeniy/test-project-pokemon-api/workflows/Node.js%20CI/badge.svg)
+
 ## Состоит из двух частей:
 
 1. Функция поиска значения в объекте по заданному пути ключей.
