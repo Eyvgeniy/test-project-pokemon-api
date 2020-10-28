@@ -1,10 +1,4 @@
-const saveUSerToLocalStorage = (user) => {
-  localStorage.setItem('user', JSON.stringify(user));
-};
-
-export const getUserFromLocalStorage = () => {
-  return JSON.parse(localStorage.getItem('user'));
-};
+import { saveUSerToLocalStorage, getUserFromLocalStorage } from './localstorage';
 
 export const validateUser = (users, setUser) => (login, password) => {
   const user = users.find((u) => u.login === login.trim());
