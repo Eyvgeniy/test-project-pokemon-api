@@ -34,7 +34,7 @@
 - [Create React App](https://create-react-app.dev/)
 - [Function components + React Hooks](https://reactjs.org/docs/hooks-state.html#hooks-and-function-components)
 - [React-router](https://reactrouter.com/web/api/Route/render-func)
-- [Bootstarp](https://getbootstrap.com/)
+- [Bootstrap](https://getbootstrap.com/)
 
 Проект размещен на [Github Pages](https://eyvgeniy.github.io/test-project-pokemon-api/#/)
 
